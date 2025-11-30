@@ -1,0 +1,142 @@
+graph TD
+    Root["Unallocated Space: 114.195.112.0/18<br/>Range: 114.195.112.0 - 114.195.255.255<br/>Total: 36,864 addresses<br/>Usable: 36,862"]
+    
+    Root --> Split1["Split at /19"]
+    
+    Split1 --> Block1["Block 1: 114.195.112.0/19<br/>16,384 addresses"]
+    Split1 --> Block2["Block 2: 114.195.128.0/19<br/>16,384 addresses<br/>🔵 RESERVED"]
+    
+    Block1 --> Split2["Split at /20"]
+    
+    Split2 --> Block3["Block 3: 114.195.112.0/20<br/>4,096 addresses"]
+    Split2 --> Block4["Block 4: 114.195.128.0/20<br/>4,096 addresses<br/>🔵 RESERVED"]
+    
+    Block3 --> Split3["Split at /21"]
+    
+    Split3 --> Block5["Block 5: 114.195.112.0/21<br/>2,048 addresses"]
+    Split3 --> Block6["Block 6: 114.195.120.0/21<br/>2,048 addresses<br/>🔵 RESERVED"]
+    
+    Block5 --> Split4["Split at /22"]
+    
+    Split4 --> Block7["Block 7: 114.195.112.0/22<br/>1,024 addresses"]
+    Split4 --> Block8["Block 8: 114.195.116.0/22<br/>1,024 addresses<br/>🔵 RESERVED"]
+    
+    Block7 --> Split5["Split at /23"]
+    
+    Split5 --> Block9["Block 9: 114.195.112.0/23<br/>512 addresses"]
+    Split5 --> Block10["Block 10: 114.195.114.0/23<br/>512 addresses<br/>🔵 RESERVED"]
+    
+    Block9 --> Split6["Split at /24"]
+    
+    Split6 --> Block11["Block 11: 114.195.112.0/24<br/>256 addresses<br/>🎯 P2P + LAN ALLOCATION"]
+    Split6 --> Block12["Block 12: 114.195.113.0/24<br/>256 addresses<br/>🔵 RESERVED"]
+    
+    Block11 --> Split7["Split at /25"]
+    
+    Split7 --> P2PBlock["P2P Block: 114.195.112.0/25<br/>128 addresses<br/>For 29 P2P Links"]
+    Split7 --> LANBlock["LAN Block: 114.195.112.128/25<br/>128 addresses<br/>For 15 Small LANs"]
+    
+    %% P2P Links Breakdown
+    P2PBlock --> P2P_Split1["Split into /30 subnets"]
+    
+    P2P_Split1 --> P2P_Group1["Links 01-08<br/>114.195.112.0 - 112.31<br/>8 × /30 = 32 addresses"]
+    P2P_Split1 --> P2P_Group2["Links 09-16<br/>114.195.112.32 - 112.63<br/>8 × /30 = 32 addresses"]
+    P2P_Split1 --> P2P_Group3["Links 17-24<br/>114.195.112.64 - 112.95<br/>8 × /30 = 32 addresses"]
+    P2P_Split1 --> P2P_Group4["Links 25-29<br/>114.195.112.96 - 112.115<br/>5 × /30 = 20 addresses<br/>+ 12 addresses unused"]
+    
+    %% P2P Details - Group 1
+    P2P_Group1 --> Link01["🔗 Link-01: 114.195.112.0/30<br/>First: .1, Last: .2<br/>Broadcast: .3"]
+    P2P_Group1 --> Link02["🔗 Link-02: 114.195.112.4/30<br/>First: .5, Last: .6<br/>Broadcast: .7"]
+    P2P_Group1 --> Link03["🔗 Link-03: 114.195.112.8/30<br/>First: .9, Last: .10<br/>Broadcast: .11"]
+    P2P_Group1 --> Link04["🔗 Link-04: 114.195.112.12/30<br/>First: .13, Last: .14<br/>Broadcast: .15"]
+    
+    %% P2P Details - Group 2
+    P2P_Group2 --> Link09["🔗 Link-09: 114.195.112.32/30<br/>First: .33, Last: .34<br/>Broadcast: .35"]
+    P2P_Group2 --> Link10["🔗 Link-10: 114.195.112.36/30<br/>First: .37, Last: .38<br/>Broadcast: .39"]
+    P2P_Group2 --> Link11["🔗 Link-11: 114.195.112.40/30<br/>First: .41, Last: .42<br/>Broadcast: .43"]
+    P2P_Group2 --> Link12["🔗 Link-12: 114.195.112.44/30<br/>First: .45, Last: .46<br/>Broadcast: .47"]
+    
+    %% P2P Details - Group 3
+    P2P_Group3 --> Link17["🔗 Link-17: 114.195.112.64/30<br/>First: .65, Last: .66<br/>Broadcast: .67"]
+    P2P_Group3 --> Link18["🔗 Link-18: 114.195.112.68/30<br/>First: .69, Last: .70<br/>Broadcast: .71"]
+    P2P_Group3 --> Link19["🔗 Link-19: 114.195.112.72/30<br/>First: .73, Last: .74<br/>Broadcast: .75"]
+    P2P_Group3 --> Link20["🔗 Link-20: 114.195.112.76/30<br/>First: .77, Last: .78<br/>Broadcast: .79"]
+    
+    %% P2P Details - Group 4
+    P2P_Group4 --> Link25["🔗 Link-25: 114.195.112.96/30<br/>First: .97, Last: .98<br/>Broadcast: .99"]
+    P2P_Group4 --> Link26["🔗 Link-26: 114.195.112.100/30<br/>First: .101, Last: .102<br/>Broadcast: .103"]
+    P2P_Group4 --> Link27["🔗 Link-27: 114.195.112.104/30<br/>First: .105, Last: .106<br/>Broadcast: .107"]
+    P2P_Group4 --> Link28["🔗 Link-28: 114.195.112.108/30<br/>First: .109, Last: .110<br/>Broadcast: .111"]
+    P2P_Group4 --> Link29["🔗 Link-29: 114.195.112.112/30<br/>First: .113, Last: .114<br/>Broadcast: .115"]
+    
+    %% LAN Networks Breakdown
+    LANBlock --> LAN_Split1["Split into /29 subnets"]
+    
+    LAN_Split1 --> LAN_Group1["LANs 01-05<br/>114.195.112.120 - 112.159<br/>5 × /29 = 40 addresses"]
+    LAN_Split1 --> LAN_Group2["LANs 06-10<br/>114.195.112.160 - 112.199<br/>5 × /29 = 40 addresses"]
+    LAN_Split1 --> LAN_Group3["LANs 11-15<br/>114.195.112.200 - 112.239<br/>5 × /29 = 40 addresses"]
+    LAN_Split1 --> LAN_Unused["Unused<br/>114.195.112.240 - 112.255<br/>16 addresses available"]
+    
+    %% LAN Details - Group 1
+    LAN_Group1 --> LAN01["🏢 LAN-01: 114.195.112.120/29<br/>Network: .120<br/>First: .121, Last: .126<br/>Broadcast: .127<br/>6 usable hosts"]
+    LAN_Group1 --> LAN02["🏢 LAN-02: 114.195.112.128/29<br/>Network: .128<br/>First: .129, Last: .134<br/>Broadcast: .135<br/>6 usable hosts"]
+    LAN_Group1 --> LAN03["🏢 LAN-03: 114.195.112.136/29<br/>Network: .136<br/>First: .137, Last: .142<br/>Broadcast: .143<br/>6 usable hosts"]
+    
+    %% LAN Details - Group 2
+    LAN_Group2 --> LAN06["🏢 LAN-06: 114.195.112.160/29<br/>Network: .160<br/>First: .161, Last: .166<br/>Broadcast: .167<br/>6 usable hosts"]
+    LAN_Group2 --> LAN07["🏢 LAN-07: 114.195.112.168/29<br/>Network: .168<br/>First: .169, Last: .174<br/>Broadcast: .175<br/>6 usable hosts"]
+    LAN_Group2 --> LAN08["🏢 LAN-08: 114.195.112.176/29<br/>Network: .176<br/>First: .177, Last: .182<br/>Broadcast: .183<br/>6 usable hosts"]
+    
+    %% LAN Details - Group 3
+    LAN_Group3 --> LAN11["🏢 LAN-11: 114.195.112.200/29<br/>Network: .200<br/>First: .201, Last: .206<br/>Broadcast: .207<br/>6 usable hosts"]
+    LAN_Group3 --> LAN12["🏢 LAN-12: 114.195.112.208/29<br/>Network: .208<br/>First: .209, Last: .214<br/>Broadcast: .215<br/>6 usable hosts"]
+    LAN_Group3 --> LAN13["🏢 LAN-13: 114.195.112.216/29<br/>Network: .216<br/>First: .217, Last: .222<br/>Broadcast: .223<br/>6 usable hosts"]
+    LAN_Group3 --> LAN14["🏢 LAN-14: 114.195.112.224/29<br/>Network: .224<br/>First: .225, Last: .230<br/>Broadcast: .231<br/>6 usable hosts"]
+    LAN_Group3 --> LAN15["🏢 LAN-15: 114.195.112.232/29<br/>Network: .232<br/>First: .233, Last: .238<br/>Broadcast: .239<br/>6 usable hosts"]
+    
+    %% Summary Box
+    Block2 -.-> Summary["📊 ALLOCATION SUMMARY<br/>━━━━━━━━━━━━━━━━━━━━<br/>Total Additional Networks: 44<br/>• P2P Links: 29 × /30 = 116 addresses<br/>• Small LANs: 15 × /29 = 120 addresses<br/>━━━━━━━━━━━━━━━━━━━━<br/>Total Used: 236 addresses<br/>Range: 114.195.112.0 - 114.195.112.239<br/>━━━━━━━━━━━━━━━━━━━━<br/>Remaining: 36,628 addresses<br/>Range: 114.195.112.240 - 114.195.255.255<br/>Utilization: 0.64%"]
+    
+    style Root fill:#e1f5ff,stroke:#01579b,stroke-width:3px,color:#000
+    style Block11 fill:#fff9c4,stroke:#f57f17,stroke-width:3px,color:#000
+    style P2PBlock fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#000
+    style LANBlock fill:#ffccbc,stroke:#d84315,stroke-width:2px,color:#000
+    style Summary fill:#f3e5f5,stroke:#4a148c,stroke-width:3px,color:#000
+    
+    style Link01 fill:#a5d6a7,stroke:#2e7d32,color:#000
+    style Link02 fill:#a5d6a7,stroke:#2e7d32,color:#000
+    style Link03 fill:#a5d6a7,stroke:#2e7d32,color:#000
+    style Link04 fill:#a5d6a7,stroke:#2e7d32,color:#000
+    style Link09 fill:#a5d6a7,stroke:#2e7d32,color:#000
+    style Link10 fill:#a5d6a7,stroke:#2e7d32,color:#000
+    style Link11 fill:#a5d6a7,stroke:#2e7d32,color:#000
+    style Link12 fill:#a5d6a7,stroke:#2e7d32,color:#000
+    style Link17 fill:#a5d6a7,stroke:#2e7d32,color:#000
+    style Link18 fill:#a5d6a7,stroke:#2e7d32,color:#000
+    style Link19 fill:#a5d6a7,stroke:#2e7d32,color:#000
+    style Link20 fill:#a5d6a7,stroke:#2e7d32,color:#000
+    style Link25 fill:#a5d6a7,stroke:#2e7d32,color:#000
+    style Link26 fill:#a5d6a7,stroke:#2e7d32,color:#000
+    style Link27 fill:#a5d6a7,stroke:#2e7d32,color:#000
+    style Link28 fill:#a5d6a7,stroke:#2e7d32,color:#000
+    style Link29 fill:#a5d6a7,stroke:#2e7d32,color:#000
+    
+    style LAN01 fill:#ffab91,stroke:#d84315,color:#000
+    style LAN02 fill:#ffab91,stroke:#d84315,color:#000
+    style LAN03 fill:#ffab91,stroke:#d84315,color:#000
+    style LAN06 fill:#ffab91,stroke:#d84315,color:#000
+    style LAN07 fill:#ffab91,stroke:#d84315,color:#000
+    style LAN08 fill:#ffab91,stroke:#d84315,color:#000
+    style LAN11 fill:#ffab91,stroke:#d84315,color:#000
+    style LAN12 fill:#ffab91,stroke:#d84315,color:#000
+    style LAN13 fill:#ffab91,stroke:#d84315,color:#000
+    style LAN14 fill:#ffab91,stroke:#d84315,color:#000
+    style LAN15 fill:#ffab91,stroke:#d84315,color:#000
+    
+    style Block2 fill:#e0e0e0,stroke:#757575,stroke-dasharray: 5 5,color:#000
+    style Block4 fill:#e0e0e0,stroke:#757575,stroke-dasharray: 5 5,color:#000
+    style Block6 fill:#e0e0e0,stroke:#757575,stroke-dasharray: 5 5,color:#000
+    style Block8 fill:#e0e0e0,stroke:#757575,stroke-dasharray: 5 5,color:#000
+    style Block10 fill:#e0e0e0,stroke:#757575,stroke-dasharray: 5 5,color:#000
+    style Block12 fill:#e0e0e0,stroke:#757575,stroke-dasharray: 5 5,color:#000
+    style LAN_Unused fill:#e0e0e0,stroke:#757575,stroke-dasharray: 5 5,color:#000
