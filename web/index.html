@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VLSM Tree Visualization - Complete Network Topology</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">VLSM Subnetting Tree</h1>
+            <div class="supernet-info">
+                <span class="supernet-label">Supernet:</span>
+                <span class="supernet-value">114.192.0.0/14</span>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">13</div>
+                    <div class="stat-label">Primary Networks</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">29</div>
+                    <div class="stat-label">P2P Links</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">15</div>
+                    <div class="stat-label">LAN Segments</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">150,978</div>
+                    <div class="stat-label">Total Hosts</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Statistics Dashboard -->
+        <div class="statistics-dashboard">
+            <h2 class="dashboard-title">Network Statistics & Analytics</h2>
+
+            <div class="charts-grid">
+                <!-- Network Distribution Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Network Distribution</h3>
+                        <span class="chart-subtitle">By Category</span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="networkDistributionChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Address Utilization Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Address Utilization</h3>
+                        <span class="chart-subtitle">Allocated vs Available</span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="addressUtilizationChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Subnet Size Distribution -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Subnet Size Distribution</h3>
+                        <span class="chart-subtitle">By Prefix Length</span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="subnetSizeChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Host Requirements Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Host Requirements</h3>
+                        <span class="chart-subtitle">Primary Networks (A-N)</span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="hostRequirementsChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Efficiency Metrics -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Efficiency Metrics</h3>
+                        <span class="chart-subtitle">Utilization Rates</span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="efficiencyChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Network Growth Timeline -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Address Space Usage</h3>
+                        <span class="chart-subtitle">Cumulative Allocation</span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="growthTimelineChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mermaid VLSM Tree Visualization -->
+        <div class="mermaid-section">
+            <h2 class="mermaid-section-title">Complete VLSM Subnetting Tree Diagram</h2>
+            <p class="mermaid-section-description">
+                Interactive visualization showing the complete hierarchical structure of all network allocations, 
+                including primary networks (A-N), point-to-point links, and LAN segments.
+            </p>
+            <div class="mermaid-container">
+                <div class="mermaid" id="vlsm-tree-diagram">
+graph TD
+    Start["Supernet: 114.192.0.0/14<br/>Range: 114.192.0.0 - 114.195.255.255<br/>Total: 262,144 addresses<br/>Usable: 262,142<br/>Allocation Strategy: Largest to Smallest"]
+    
+    Start --> Split1["First Split: /15<br/>Divide into 2 equal blocks"]
+    
+    Split1 --> F["Network F: 114.192.0.0/15<br/>Required: 83,492 hosts<br/>H = 17, Prefix = /15<br/>Mask: 255.254.0.0<br/>Total: 131,072 addresses<br/>Usable: 131,070 addresses<br/>First: 114.192.0.1<br/>Last: 114.193.255.254<br/>Broadcast: 114.193.255.255<br/>Waste: 47,578 (36.3%)<br/>ALLOCATED"]
+    
+    Split1 --> Block2["Remaining: 114.194.0.0/15<br/>131,072 addresses available"]
+    
+    Block2 --> Split2["Second Split: /16<br/>Divide into 2 /16 blocks"]
+    
+    Split2 --> Block3["Block: 114.194.0.0/16<br/>65,536 addresses"]
+    Split2 --> Block4["Block: 114.195.0.0/16<br/>65,536 addresses"]
+    
+    Block3 --> Split3["Split: /17<br/>Divide into 2 /17 blocks"]
+    
+    Split3 --> Block5["Block: 114.194.0.0/17<br/>32,768 addresses"]
+    Split3 --> Block6["Block: 114.194.128.0/17<br/>32,768 addresses"]
+    
+    Block5 --> Split4["Split: /18<br/>Divide into 4 /18 blocks"]
+    
+    Split4 --> B["Network B: 114.194.0.0/18<br/>Required: 14,068 hosts<br/>H = 14, Prefix = /18<br/>Mask: 255.255.192.0<br/>Total: 16,384<br/>Usable: 16,382<br/>First: 114.194.0.1<br/>Last: 114.194.63.254<br/>Broadcast: 114.194.63.255<br/>Waste: 2,314 (14.1%)<br/>ALLOCATED"]
+    
+    Split4 --> C["Network C: 114.194.64.0/18<br/>Required: 11,243 hosts<br/>H = 14, Prefix = /18<br/>Mask: 255.255.192.0<br/>Total: 16,384<br/>Usable: 16,382<br/>First: 114.194.64.1<br/>Last: 114.194.127.254<br/>Broadcast: 114.194.127.255<br/>Waste: 5,139 (31.4%)<br/>ALLOCATED"]
+    
+    Block6 --> Split5["Split: /18<br/>Divide into 2 /18 blocks"]
+    
+    Split5 --> A["Network A: 114.194.128.0/18<br/>Required: 10,921 hosts<br/>H = 14, Prefix = /18<br/>Mask: 255.255.192.0<br/>Total: 16,384<br/>Usable: 16,382<br/>First: 114.194.128.1<br/>Last: 114.194.191.254<br/>Broadcast: 114.194.191.255<br/>Waste: 5,461 (33.3%)<br/>ALLOCATED"]
+    
+    Split5 --> L["Network L: 114.194.192.0/18<br/>Required: 8,644 hosts<br/>H = 14, Prefix = /18<br/>Mask: 255.255.192.0<br/>Total: 16,384<br/>Usable: 16,382<br/>First: 114.194.192.1<br/>Last: 114.194.255.254<br/>Broadcast: 114.194.255.255<br/>Waste: 7,738 (47.2%)<br/>ALLOCATED"]
+    
+    Block4 --> Split6["Split: /18<br/>Divide into 4 /18 blocks"]
+    
+    Split6 --> Block7["Block: 114.195.0.0/18<br/>16,384 addresses"]
+    Split6 --> Block8["Block: 114.195.64.0/18<br/>16,384 addresses"]
+    Split6 --> Block9["Block: 114.195.128.0/18<br/>16,384 addresses"]
+    Split6 --> Block10["Block: 114.195.192.0/18<br/>16,384 addresses"]
+    
+    Block7 --> Split7["Split: /19<br/>Divide into 2 /19 blocks"]
+    
+    Split7 --> E["Network E: 114.195.0.0/19<br/>Required: 7,579 hosts<br/>H = 13, Prefix = /19<br/>Mask: 255.255.224.0<br/>Total: 8,192<br/>Usable: 8,190<br/>First: 114.195.0.1<br/>Last: 114.195.31.254<br/>Broadcast: 114.195.31.255<br/>Waste: 611 (7.5%)<br/>ALLOCATED"]
+    
+    Split7 --> M["Network M: 114.195.32.0/19<br/>Required: 6,021 hosts<br/>H = 13, Prefix = /19<br/>Mask: 255.255.224.0<br/>Total: 8,192<br/>Usable: 8,190<br/>First: 114.195.32.1<br/>Last: 114.195.63.254<br/>Broadcast: 114.195.63.255<br/>Waste: 2,169 (26.5%)<br/>ALLOCATED"]
+    
+    Block8 --> Split8["Split: /20<br/>Divide into 4 /20 blocks"]
+    
+    Split8 --> G["Network G: 114.195.64.0/20<br/>Required: 3,447 hosts<br/>H = 12, Prefix = /20<br/>Mask: 255.255.240.0<br/>Total: 4,096<br/>Usable: 4,094<br/>First: 114.195.64.1<br/>Last: 114.195.79.254<br/>Broadcast: 114.195.79.255<br/>Waste: 647 (15.8%)<br/>ALLOCATED"]
+    
+    Split8 --> D["Network D: 114.195.80.0/20<br/>Required: 2,154 hosts<br/>H = 12, Prefix = /20<br/>Mask: 255.255.240.0<br/>Total: 4,096<br/>Usable: 4,094<br/>First: 114.195.80.1<br/>Last: 114.195.95.254<br/>Broadcast: 114.195.95.255<br/>Waste: 1,940 (47.4%)<br/>ALLOCATED"]
+    
+    Split8 --> Block11["Block: 114.195.96.0/20<br/>4,096 addresses"]
+    Split8 --> Block12["Block: 114.195.112.0/20<br/>4,096 addresses"]
+    
+    Block11 --> Split9["Split: /22<br/>Divide into 4 /22 blocks"]
+    
+    Split9 --> J["Network J: 114.195.96.0/22<br/>Required: 874 hosts<br/>H = 10, Prefix = /22<br/>Mask: 255.255.252.0<br/>Total: 1,024<br/>Usable: 1,022<br/>First: 114.195.96.1<br/>Last: 114.195.99.254<br/>Broadcast: 114.195.99.255<br/>Waste: 148 (14.5%)<br/>ALLOCATED"]
+    
+    Split9 --> H["Network H: 114.195.100.0/22<br/>Required: 851 hosts<br/>H = 10, Prefix = /22<br/>Mask: 255.255.252.0<br/>Total: 1,024<br/>Usable: 1,022<br/>First: 114.195.100.1<br/>Last: 114.195.103.254<br/>Broadcast: 114.195.103.255<br/>Waste: 171 (16.7%)<br/>ALLOCATED"]
+    
+    Split9 --> N["Network N: 114.195.104.0/22<br/>Required: 849 hosts<br/>H = 10, Prefix = /22<br/>Mask: 255.255.252.0<br/>Total: 1,024<br/>Usable: 1,022<br/>First: 114.195.104.1<br/>Last: 114.195.107.254<br/>Broadcast: 114.195.107.255<br/>Waste: 173 (16.9%)<br/>ALLOCATED"]
+    
+    Split9 --> I["Network I: 114.195.108.0/22<br/>Required: 835 hosts<br/>H = 10, Prefix = /22<br/>Mask: 255.255.252.0<br/>Total: 1,024<br/>Usable: 1,022<br/>First: 114.195.108.1<br/>Last: 114.195.111.254<br/>Broadcast: 114.195.111.255<br/>Waste: 187 (18.3%)<br/>ALLOCATED"]
+    
+    Block12 --> Split10["Additional Networks<br/>P2P Links and LAN Segments"]
+    
+    Split10 --> P2PBlock["Point-to-Point Links<br/>29 Links x /30 = 116 addresses<br/>Range: 114.195.112.0 - 114.195.112.115<br/>Each Link: 2 usable hosts<br/>Total: 58 usable addresses<br/>Efficiency: 50%"]
+    
+    Split10 --> LANBlock["LAN Segments<br/>15 LANs x /29 = 120 addresses<br/>Range: 114.195.112.120 - 114.195.112.239<br/>Each LAN: 6 usable hosts<br/>Total: 90 usable addresses<br/>Efficiency: 75%"]
+    
+    Block9 --> Future1["Future Expansion<br/>114.195.128.0 - 114.195.191.255<br/>16,384 addresses available"]
+    
+    Block10 --> Future2["Future Expansion<br/>114.195.192.0 - 114.195.255.255<br/>16,384 addresses available"]
+    
+    Block12 --> Future3["Future Expansion<br/>114.195.112.240 - 114.195.112.255<br/>16 addresses available"]
+                </div>
+            </div>
+            <div class="mermaid-controls">
+                <button class="mermaid-btn" id="zoomIn">Zoom In</button>
+                <button class="mermaid-btn" id="zoomOut">Zoom Out</button>
+                <button class="mermaid-btn" id="resetZoom">Reset Zoom</button>
+                <button class="mermaid-btn" id="downloadDiagram">Download Diagram</button>
+            </div>
+        </div>
+
+        <div class="tree-container">
+            <!-- Root Node -->
+            <div class="root-node">
+                <div class="node-content supernet-node">
+                    <div class="node-title">Root Supernet</div>
+                    <div class="node-subnet">114.192.0.0/14</div>
+                    <div class="node-range">114.192.0.0 → 114.195.255.255</div>
+                </div>
+            </div>
+
+            <!-- Primary Networks (A-N) -->
+            <div class="network-section">
+                <h2 class="section-title">Primary Networks (A-N)</h2>
+                <div class="networks-grid">
+                    <!-- Network F -->
+                    <div class="network-card largest" data-network="F">
+                        <div class="network-header">
+                            <span class="network-name">Network F</span>
+                            <span class="network-prefix">/15</span>
+                        </div>
+                        <div class="network-body">
+                            <div class="info-row">
+                                <span class="label">Subnet:</span>
+                                <span class="value">114.192.0.0/15</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Mask:</span>
+                                <span class="value">255.254.0.0</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Required:</span>
+                                <span class="value">83,492 hosts</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Usable:</span>
+                                <span class="value">131,070 addresses</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Range:</span>
+                                <span class="value">114.192.0.1 - 114.193.255.254</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Broadcast:</span>
+                                <span class="value">114.193.255.255</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Network B -->
+                    <div class="network-card large" data-network="B">
+                        <div class="network-header">
+                            <span class="network-name">Network B</span>
+                            <span class="network-prefix">/18</span>
+                        </div>
+                        <div class="network-body">
+                            <div class="info-row">
+                                <span class="label">Subnet:</span>
+                                <span class="value">114.194.0.0/18</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Mask:</span>
+                                <span class="value">255.255.192.0</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Required:</span>
+                                <span class="value">14,068 hosts</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Usable:</span>
+                                <span class="value">16,382 addresses</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Range:</span>
+                                <span class="value">114.194.0.1 - 114.194.63.254</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Broadcast:</span>
+                                <span class="value">114.194.63.255</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Network C -->
+                    <div class="network-card large" data-network="C">
+                        <div class="network-header">
+                            <span class="network-name">Network C</span>
+                            <span class="network-prefix">/18</span>
+                        </div>
+                        <div class="network-body">
+                            <div class="info-row">
+                                <span class="label">Subnet:</span>
+                                <span class="value">114.194.64.0/18</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Mask:</span>
+                                <span class="value">255.255.192.0</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Required:</span>
+                                <span class="value">11,243 hosts</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Usable:</span>
+                                <span class="value">16,382 addresses</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Range:</span>
+                                <span class="value">114.194.64.1 - 114.194.127.254</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Broadcast:</span>
+                                <span class="value">114.194.127.255</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Network A -->
+                    <div class="network-card large" data-network="A">
+                        <div class="network-header">
+                            <span class="network-name">Network A</span>
+                            <span class="network-prefix">/18</span>
+                        </div>
+                        <div class="network-body">
+                            <div class="info-row">
+                                <span class="label">Subnet:</span>
+                                <span class="value">114.194.128.0/18</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Mask:</span>
+                                <span class="value">255.255.192.0</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Required:</span>
+                                <span class="value">10,921 hosts</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Usable:</span>
+                                <span class="value">16,382 addresses</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Range:</span>
+                                <span class="value">114.194.128.1 - 114.194.191.254</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Broadcast:</span>
+                                <span class="value">114.194.191.255</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Network L -->
+                    <div class="network-card large" data-network="L">
+                        <div class="network-header">
+                            <span class="network-name">Network L</span>
+                            <span class="network-prefix">/18</span>
+                        </div>
+                        <div class="network-body">
+                            <div class="info-row">
+                                <span class="label">Subnet:</span>
+                                <span class="value">114.194.192.0/18</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Mask:</span>
+                                <span class="value">255.255.192.0</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Required:</span>
+                                <span class="value">8,644 hosts</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Usable:</span>
+                                <span class="value">16,382 addresses</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Range:</span>
+                                <span class="value">114.194.192.1 - 114.194.255.254</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Broadcast:</span>
+                                <span class="value">114.194.255.255</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Network E -->
+                    <div class="network-card medium" data-network="E">
+                        <div class="network-header">
+                            <span class="network-name">Network E</span>
+                            <span class="network-prefix">/19</span>
+                        </div>
+                        <div class="network-body">
+                            <div class="info-row">
+                                <span class="label">Subnet:</span>
+                                <span class="value">114.195.0.0/19</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Mask:</span>
+                                <span class="value">255.255.224.0</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Required:</span>
+                                <span class="value">7,579 hosts</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Usable:</span>
+                                <span class="value">8,190 addresses</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Range:</span>
+                                <span class="value">114.195.0.1 - 114.195.31.254</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Broadcast:</span>
+                                <span class="value">114.195.31.255</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Network M -->
+                    <div class="network-card medium" data-network="M">
+                        <div class="network-header">
+                            <span class="network-name">Network M</span>
+                            <span class="network-prefix">/19</span>
+                        </div>
+                        <div class="network-body">
+                            <div class="info-row">
+                                <span class="label">Subnet:</span>
+                                <span class="value">114.195.32.0/19</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Mask:</span>
+                                <span class="value">255.255.224.0</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Required:</span>
+                                <span class="value">6,021 hosts</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Usable:</span>
+                                <span class="value">8,190 addresses</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Range:</span>
+                                <span class="value">114.195.32.1 - 114.195.63.254</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Broadcast:</span>
+                                <span class="value">114.195.63.255</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Network G -->
+                    <div class="network-card small" data-network="G">
+                        <div class="network-header">
+                            <span class="network-name">Network G</span>
+                            <span class="network-prefix">/20</span>
+                        </div>
+                        <div class="network-body">
+                            <div class="info-row">
+                                <span class="label">Subnet:</span>
+                                <span class="value">114.195.64.0/20</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Mask:</span>
+                                <span class="value">255.255.240.0</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Required:</span>
+                                <span class="value">3,447 hosts</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Usable:</span>
+                                <span class="value">4,094 addresses</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Range:</span>
+                                <span class="value">114.195.64.1 - 114.195.79.254</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Broadcast:</span>
+                                <span class="value">114.195.79.255</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Network D -->
+                    <div class="network-card small" data-network="D">
+                        <div class="network-header">
+                            <span class="network-name">Network D</span>
+                            <span class="network-prefix">/20</span>
+                        </div>
+                        <div class="network-body">
+                            <div class="info-row">
+                                <span class="label">Subnet:</span>
+                                <span class="value">114.195.80.0/20</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Mask:</span>
+                                <span class="value">255.255.240.0</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Required:</span>
+                                <span class="value">2,154 hosts</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Usable:</span>
+                                <span class="value">4,094 addresses</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Range:</span>
+                                <span class="value">114.195.80.1 - 114.195.95.254</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Broadcast:</span>
+                                <span class="value">114.195.95.255</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Network J -->
+                    <div class="network-card tiny" data-network="J">
+                        <div class="network-header">
+                            <span class="network-name">Network J</span>
+                            <span class="network-prefix">/22</span>
+                        </div>
+                        <div class="network-body">
+                            <div class="info-row">
+                                <span class="label">Subnet:</span>
+                                <span class="value">114.195.96.0/22</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Mask:</span>
+                                <span class="value">255.255.252.0</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Required:</span>
+                                <span class="value">874 hosts</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Usable:</span>
+                                <span class="value">1,022 addresses</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Range:</span>
+                                <span class="value">114.195.96.1 - 114.195.99.254</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Broadcast:</span>
+                                <span class="value">114.195.99.255</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Network H -->
+                    <div class="network-card tiny" data-network="H">
+                        <div class="network-header">
+                            <span class="network-name">Network H</span>
+                            <span class="network-prefix">/22</span>
+                        </div>
+                        <div class="network-body">
+                            <div class="info-row">
+                                <span class="label">Subnet:</span>
+                                <span class="value">114.195.100.0/22</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Mask:</span>
+                                <span class="value">255.255.252.0</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Required:</span>
+                                <span class="value">851 hosts</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Usable:</span>
+                                <span class="value">1,022 addresses</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Range:</span>
+                                <span class="value">114.195.100.1 - 114.195.103.254</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Broadcast:</span>
+                                <span class="value">114.195.103.255</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Network N -->
+                    <div class="network-card tiny" data-network="N">
+                        <div class="network-header">
+                            <span class="network-name">Network N</span>
+                            <span class="network-prefix">/22</span>
+                        </div>
+                        <div class="network-body">
+                            <div class="info-row">
+                                <span class="label">Subnet:</span>
+                                <span class="value">114.195.104.0/22</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Mask:</span>
+                                <span class="value">255.255.252.0</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Required:</span>
+                                <span class="value">849 hosts</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Usable:</span>
+                                <span class="value">1,022 addresses</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Range:</span>
+                                <span class="value">114.195.104.1 - 114.195.107.254</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Broadcast:</span>
+                                <span class="value">114.195.107.255</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Network I -->
+                    <div class="network-card tiny" data-network="I">
+                        <div class="network-header">
+                            <span class="network-name">Network I</span>
+                            <span class="network-prefix">/22</span>
+                        </div>
+                        <div class="network-body">
+                            <div class="info-row">
+                                <span class="label">Subnet:</span>
+                                <span class="value">114.195.108.0/22</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Mask:</span>
+                                <span class="value">255.255.252.0</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Required:</span>
+                                <span class="value">835 hosts</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Usable:</span>
+                                <span class="value">1,022 addresses</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Range:</span>
+                                <span class="value">114.195.108.1 - 114.195.111.254</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Broadcast:</span>
+                                <span class="value">114.195.111.255</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Point-to-Point Links -->
+            <div class="network-section">
+                <h2 class="section-title">Point-to-Point Router Links (29 Links)</h2>
+                <div class="links-grid">
+                    <div class="link-card" data-link="1">
+                        <div class="link-header">Link-01</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.0/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .1</span>
+                                <span class="router">R2: .2</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="2">
+                        <div class="link-header">Link-02</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.4/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .5</span>
+                                <span class="router">R2: .6</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="3">
+                        <div class="link-header">Link-03</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.8/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .9</span>
+                                <span class="router">R2: .10</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="4">
+                        <div class="link-header">Link-04</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.12/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .13</span>
+                                <span class="router">R2: .14</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="5">
+                        <div class="link-header">Link-05</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.16/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .17</span>
+                                <span class="router">R2: .18</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="6">
+                        <div class="link-header">Link-06</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.20/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .21</span>
+                                <span class="router">R2: .22</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="7">
+                        <div class="link-header">Link-07</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.24/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .25</span>
+                                <span class="router">R2: .26</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="8">
+                        <div class="link-header">Link-08</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.28/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .29</span>
+                                <span class="router">R2: .30</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="9">
+                        <div class="link-header">Link-09</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.32/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .33</span>
+                                <span class="router">R2: .34</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="10">
+                        <div class="link-header">Link-10</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.36/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .37</span>
+                                <span class="router">R2: .38</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="11">
+                        <div class="link-header">Link-11</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.40/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .41</span>
+                                <span class="router">R2: .42</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="12">
+                        <div class="link-header">Link-12</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.44/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .45</span>
+                                <span class="router">R2: .46</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="13">
+                        <div class="link-header">Link-13</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.48/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .49</span>
+                                <span class="router">R2: .50</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="14">
+                        <div class="link-header">Link-14</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.52/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .53</span>
+                                <span class="router">R2: .54</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="15">
+                        <div class="link-header">Link-15</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.56/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .57</span>
+                                <span class="router">R2: .58</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="16">
+                        <div class="link-header">Link-16</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.60/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .61</span>
+                                <span class="router">R2: .62</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="17">
+                        <div class="link-header">Link-17</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.64/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .65</span>
+                                <span class="router">R2: .66</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="18">
+                        <div class="link-header">Link-18</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.68/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .69</span>
+                                <span class="router">R2: .70</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="19">
+                        <div class="link-header">Link-19</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.72/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .73</span>
+                                <span class="router">R2: .74</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="20">
+                        <div class="link-header">Link-20</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.76/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .77</span>
+                                <span class="router">R2: .78</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="21">
+                        <div class="link-header">Link-21</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.80/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .81</span>
+                                <span class="router">R2: .82</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="22">
+                        <div class="link-header">Link-22</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.84/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .85</span>
+                                <span class="router">R2: .86</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="23">
+                        <div class="link-header">Link-23</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.88/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .89</span>
+                                <span class="router">R2: .90</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="24">
+                        <div class="link-header">Link-24</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.92/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .93</span>
+                                <span class="router">R2: .94</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="25">
+                        <div class="link-header">Link-25</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.96/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .97</span>
+                                <span class="router">R2: .98</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="26">
+                        <div class="link-header">Link-26</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.100/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .101</span>
+                                <span class="router">R2: .102</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="27">
+                        <div class="link-header">Link-27</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.104/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .105</span>
+                                <span class="router">R2: .106</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="28">
+                        <div class="link-header">Link-28</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.108/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .109</span>
+                                <span class="router">R2: .110</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link-card" data-link="29">
+                        <div class="link-header">Link-29</div>
+                        <div class="link-body">
+                            <div class="link-info">114.195.112.112/30</div>
+                            <div class="link-routers">
+                                <span class="router">R1: .113</span>
+                                <span class="router">R2: .114</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LAN Segments -->
+            <div class="network-section">
+                <h2 class="section-title">LAN Segments (15 Networks)</h2>
+                <div class="lan-grid">
+                    <div class="lan-card" data-lan="1">
+                        <div class="lan-header">LAN-01</div>
+                        <div class="lan-body">
+                            <div class="lan-subnet">114.195.112.120/29</div>
+                            <div class="lan-range">121 - 126</div>
+                            <div class="lan-hosts">6 hosts</div>
+                        </div>
+                    </div>
+                    <div class="lan-card" data-lan="2">
+                        <div class="lan-header">LAN-02</div>
+                        <div class="lan-body">
+                            <div class="lan-subnet">114.195.112.128/29</div>
+                            <div class="lan-range">129 - 134</div>
+                            <div class="lan-hosts">6 hosts</div>
+                        </div>
+                    </div>
+                    <div class="lan-card" data-lan="3">
+                        <div class="lan-header">LAN-03</div>
+                        <div class="lan-body">
+                            <div class="lan-subnet">114.195.112.136/29</div>
+                            <div class="lan-range">137 - 142</div>
+                            <div class="lan-hosts">6 hosts</div>
+                        </div>
+                    </div>
+                    <div class="lan-card" data-lan="4">
+                        <div class="lan-header">LAN-04</div>
+                        <div class="lan-body">
+                            <div class="lan-subnet">114.195.112.144/29</div>
+                            <div class="lan-range">145 - 150</div>
+                            <div class="lan-hosts">6 hosts</div>
+                        </div>
+                    </div>
+                    <div class="lan-card" data-lan="5">
+                        <div class="lan-header">LAN-05</div>
+                        <div class="lan-body">
+                            <div class="lan-subnet">114.195.112.152/29</div>
+                            <div class="lan-range">153 - 158</div>
+                            <div class="lan-hosts">6 hosts</div>
+                        </div>
+                    </div>
+                    <div class="lan-card" data-lan="6">
+                        <div class="lan-header">LAN-06</div>
+                        <div class="lan-body">
+                            <div class="lan-subnet">114.195.112.160/29</div>
+                            <div class="lan-range">161 - 166</div>
+                            <div class="lan-hosts">6 hosts</div>
+                        </div>
+                    </div>
+                    <div class="lan-card" data-lan="7">
+                        <div class="lan-header">LAN-07</div>
+                        <div class="lan-body">
+                            <div class="lan-subnet">114.195.112.168/29</div>
+                            <div class="lan-range">169 - 174</div>
+                            <div class="lan-hosts">6 hosts</div>
+                        </div>
+                    </div>
+                    <div class="lan-card" data-lan="8">
+                        <div class="lan-header">LAN-08</div>
+                        <div class="lan-body">
+                            <div class="lan-subnet">114.195.112.176/29</div>
+                            <div class="lan-range">177 - 182</div>
+                            <div class="lan-hosts">6 hosts</div>
+                        </div>
+                    </div>
+                    <div class="lan-card" data-lan="9">
+                        <div class="lan-header">LAN-09</div>
+                        <div class="lan-body">
+                            <div class="lan-subnet">114.195.112.184/29</div>
+                            <div class="lan-range">185 - 190</div>
+                            <div class="lan-hosts">6 hosts</div>
+                        </div>
+                    </div>
+                    <div class="lan-card" data-lan="10">
+                        <div class="lan-header">LAN-10</div>
+                        <div class="lan-body">
+                            <div class="lan-subnet">114.195.112.192/29</div>
+                            <div class="lan-range">193 - 198</div>
+                            <div class="lan-hosts">6 hosts</div>
+                        </div>
+                    </div>
+                    <div class="lan-card" data-lan="11">
+                        <div class="lan-header">LAN-11</div>
+                        <div class="lan-body">
+                            <div class="lan-subnet">114.195.112.200/29</div>
+                            <div class="lan-range">201 - 206</div>
+                            <div class="lan-hosts">6 hosts</div>
+                        </div>
+                    </div>
+                    <div class="lan-card" data-lan="12">
+                        <div class="lan-header">LAN-12</div>
+                        <div class="lan-body">
+                            <div class="lan-subnet">114.195.112.208/29</div>
+                            <div class="lan-range">209 - 214</div>
+                            <div class="lan-hosts">6 hosts</div>
+                        </div>
+                    </div>
+                    <div class="lan-card" data-lan="13">
+                        <div class="lan-header">LAN-13</div>
+                        <div class="lan-body">
+                            <div class="lan-subnet">114.195.112.216/29</div>
+                            <div class="lan-range">217 - 222</div>
+                            <div class="lan-hosts">6 hosts</div>
+                        </div>
+                    </div>
+                    <div class="lan-card" data-lan="14">
+                        <div class="lan-header">LAN-14</div>
+                        <div class="lan-body">
+                            <div class="lan-subnet">114.195.112.224/29</div>
+                            <div class="lan-range">225 - 230</div>
+                            <div class="lan-hosts">6 hosts</div>
+                        </div>
+                    </div>
+                    <div class="lan-card" data-lan="15">
+                        <div class="lan-header">LAN-15</div>
+                        <div class="lan-body">
+                            <div class="lan-subnet">114.195.112.232/29</div>
+                            <div class="lan-range">233 - 238</div>
+                            <div class="lan-hosts">6 hosts</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Gallery Section -->
+        <div class="image-gallery-section">
+            <h2 class="gallery-main-title">Project Documentation & Results</h2>
+            
+            <!-- Project Topology Section -->
+            <div class="gallery-category">
+                <h3 class="gallery-category-title">Project Topology & Network Diagrams</h3>
+                <div class="image-gallery">
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../Project Topology.png" alt="Project Topology" loading="lazy">
+                        </div>
+                        <div class="image-caption">Project Topology Overview</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../other_networks_topology_lables.png" alt="Other Networks Topology Labels" loading="lazy">
+                        </div>
+                        <div class="image-caption">Other Networks Topology Labels</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../configured_topology_snapshots/complete_topology.png" alt="Complete Topology" loading="lazy">
+                        </div>
+                        <div class="image-caption">Complete Configured Topology</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../configured_topology_snapshots/topolgoy_row1.png" alt="Topology Row 1" loading="lazy">
+                        </div>
+                        <div class="image-caption">Topology Row 1 Configuration</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../configured_topology_snapshots/topolgoy_row2.png" alt="Topology Row 2" loading="lazy">
+                        </div>
+                        <div class="image-caption">Topology Row 2 Configuration</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VLSM Tree Section -->
+            <div class="gallery-category">
+                <h3 class="gallery-category-title">VLSM Subnetting Tree Visualizations</h3>
+                <div class="image-gallery">
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../VLSM-tree-1.png" alt="VLSM Tree 1" loading="lazy">
+                        </div>
+                        <div class="image-caption">VLSM Tree Visualization - Part 1</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../VLSM-tree-2.png" alt="VLSM Tree 2" loading="lazy">
+                        </div>
+                        <div class="image-caption">VLSM Tree Visualization - Part 2</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../VLSM-tree-other_networks.png" alt="VLSM Tree Other Networks" loading="lazy">
+                        </div>
+                        <div class="image-caption">VLSM Tree - Other Networks</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Routing Protocol Results Section -->
+            <div class="gallery-category">
+                <h3 class="gallery-category-title">Routing Protocol Configuration Results</h3>
+                
+                <h4 class="gallery-subcategory-title">RIP Configuration</h4>
+                <div class="image-gallery">
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/rip_commands.png" alt="RIP Commands" loading="lazy">
+                        </div>
+                        <div class="image-caption">RIP Configuration Commands</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/rip_row1_block2_message.png" alt="RIP Row 1 Block 2 Message" loading="lazy">
+                        </div>
+                        <div class="image-caption">RIP Row 1 Block 2 Message</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/rip_row1_block3_message.png" alt="RIP Row 1 Block 3 Message" loading="lazy">
+                        </div>
+                        <div class="image-caption">RIP Row 1 Block 3 Message</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/rip_row1_block3.png" alt="RIP Row 1 Block 3" loading="lazy">
+                        </div>
+                        <div class="image-caption">RIP Row 1 Block 3 Result</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/rip_row2_block1.png" alt="RIP Row 2 Block 1" loading="lazy">
+                        </div>
+                        <div class="image-caption">RIP Row 2 Block 1 Result</div>
+                    </div>
+                </div>
+
+                <h4 class="gallery-subcategory-title">EIGRP Configuration</h4>
+                <div class="image-gallery">
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/eigrp11_commands.png" alt="EIGRP Commands" loading="lazy">
+                        </div>
+                        <div class="image-caption">EIGRP Configuration Commands - Part 1</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/eigrp11_commands_2.png" alt="EIGRP Commands 2" loading="lazy">
+                        </div>
+                        <div class="image-caption">EIGRP Configuration Commands - Part 2</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/eigrp11_commands_3.png" alt="EIGRP Commands 3" loading="lazy">
+                        </div>
+                        <div class="image-caption">EIGRP Configuration Commands - Part 3</div>
+                    </div>
+                </div>
+
+                <h4 class="gallery-subcategory-title">OSPF Configuration</h4>
+                <div class="image-gallery">
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/ospf_area0_commands.png" alt="OSPF Area 0 Commands" loading="lazy">
+                        </div>
+                        <div class="image-caption">OSPF Area 0 Commands - Part 1</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/ospf_area0_commands_2.png" alt="OSPF Area 0 Commands 2" loading="lazy">
+                        </div>
+                        <div class="image-caption">OSPF Area 0 Commands - Part 2</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/ospf_area0_message.png" alt="OSPF Area 0 Message" loading="lazy">
+                        </div>
+                        <div class="image-caption">OSPF Area 0 Message</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/ospf_area1_commands.png" alt="OSPF Area 1 Commands" loading="lazy">
+                        </div>
+                        <div class="image-caption">OSPF Area 1 Commands</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/ospf_area1_message.png" alt="OSPF Area 1 Message" loading="lazy">
+                        </div>
+                        <div class="image-caption">OSPF Area 1 Message</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/ospf_row2_block2_area0_and_area2_message.png" alt="OSPF Row 2 Block 2 Area 0 and Area 2" loading="lazy">
+                        </div>
+                        <div class="image-caption">OSPF Row 2 Block 2 - Area 0 & Area 2 Message</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/ospf_row2_block2_area1_and area0_and_area2_message.png" alt="OSPF Row 2 Block 2 Area 1, Area 0 and Area 2" loading="lazy">
+                        </div>
+                        <div class="image-caption">OSPF Row 2 Block 2 - Area 1, Area 0 & Area 2 Message</div>
+                    </div>
+                </div>
+
+                <h4 class="gallery-subcategory-title">Protocol Redistribution</h4>
+                <div class="image-gallery">
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/rip-eigrp-proof.png" alt="RIP-EIGRP Proof" loading="lazy">
+                        </div>
+                        <div class="image-caption">RIP-EIGRP Redistribution Proof - Part 1</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/rip-eigrp-proof2.png" alt="RIP-EIGRP Proof 2" loading="lazy">
+                        </div>
+                        <div class="image-caption">RIP-EIGRP Redistribution Proof - Part 2</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/eigrp-rip-redistribution.png" alt="EIGRP-RIP Redistribution" loading="lazy">
+                        </div>
+                        <div class="image-caption">EIGRP-RIP Redistribution Result</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/area1(ospf)_rip_redistribution.png" alt="OSPF Area 1 RIP Redistribution" loading="lazy">
+                        </div>
+                        <div class="image-caption">OSPF Area 1 - RIP Redistribution</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/area1(ospf)_eigrp_redistribution.png" alt="OSPF Area 1 EIGRP Redistribution" loading="lazy">
+                        </div>
+                        <div class="image-caption">OSPF Area 1 - EIGRP Redistribution</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/area1_area0_ospf_redistribution.png" alt="OSPF Area 1 Area 0 Redistribution" loading="lazy">
+                        </div>
+                        <div class="image-caption">OSPF Area 1 - Area 0 Redistribution</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/area0_area2_ospf_redistribution.png" alt="OSPF Area 0 Area 2 Redistribution" loading="lazy">
+                        </div>
+                        <div class="image-caption">OSPF Area 0 - Area 2 Redistribution</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/ospf-eigrp11_redistribution.png" alt="OSPF-EIGRP Redistribution" loading="lazy">
+                        </div>
+                        <div class="image-caption">OSPF-EIGRP Redistribution Result</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DHCP Configuration Section -->
+            <div class="gallery-category">
+                <h3 class="gallery-category-title">DHCP Configuration Results</h3>
+                <div class="image-gallery">
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/DHCP1-SERVER-TFTP.png" alt="DHCP1 Server TFTP" loading="lazy">
+                        </div>
+                        <div class="image-caption">DHCP1 Server TFTP Configuration</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/DHCP1-ROW2.png" alt="DHCP1 Row 2" loading="lazy">
+                        </div>
+                        <div class="image-caption">DHCP1 Row 2 Configuration</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/DHCP1-POOLING-ROW2.png" alt="DHCP1 Pooling Row 2" loading="lazy">
+                        </div>
+                        <div class="image-caption">DHCP1 Pooling Row 2 Result</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/DHCP2-ROW1.png" alt="DHCP2 Row 1" loading="lazy">
+                        </div>
+                        <div class="image-caption">DHCP2 Row 1 Configuration</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/DHCP2-POOLING-ROW1.png" alt="DHCP2 Pooling Row 1" loading="lazy">
+                        </div>
+                        <div class="image-caption">DHCP2 Pooling Row 1 Result</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACL Configuration Section -->
+            <div class="gallery-category">
+                <h3 class="gallery-category-title">Access Control List (ACL) Configuration</h3>
+                <div class="image-gallery">
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/ACL_NETWORK-1_L_WEB-SERVER.png" alt="ACL Network 1 Web Server" loading="lazy">
+                        </div>
+                        <div class="image-caption">ACL Network 1 - Web Server Configuration</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/ACL_NETWORK-2_A_TFTP_SERVER.png" alt="ACL Network 2 TFTP Server" loading="lazy">
+                        </div>
+                        <div class="image-caption">ACL Network 2 - TFTP Server Configuration</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/ACL_NETWORK-2_DATA-SERVER.png" alt="ACL Network 2 Data Server" loading="lazy">
+                        </div>
+                        <div class="image-caption">ACL Network 2 - Data Server Configuration</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NAT Configuration Section -->
+            <div class="gallery-category">
+                <h3 class="gallery-category-title">Network Address Translation (NAT) Configuration</h3>
+                <div class="image-gallery">
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/NAT_result.png" alt="NAT Result" loading="lazy">
+                        </div>
+                        <div class="image-caption">NAT Configuration Result</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Server Services Section -->
+            <div class="gallery-category">
+                <h3 class="gallery-category-title">Server Services Configuration</h3>
+                <div class="image-gallery">
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/TFTP_SERVER_SERVICES_OFF_POINT_10_a.png" alt="TFTP Server Services" loading="lazy">
+                        </div>
+                        <div class="image-caption">TFTP Server Services - Point 10a</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/WEB_SERVER_SERVICES_OFF_POINT_10_b.png" alt="Web Server Services" loading="lazy">
+                        </div>
+                        <div class="image-caption">Web Server Services - Point 10b</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-wrapper">
+                            <img src="../results/DATA_SERVER_SERVICES_OFF_POINT_10_b.png" alt="Data Server Services" loading="lazy">
+                        </div>
+                        <div class="image-caption">Data Server Services - Point 10b</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p>VLSM Subnetting Configuration | Muhammad Nouman Hafeez (21I-0416)</p>
+                <p>FAST National University | Computer Networks Project</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

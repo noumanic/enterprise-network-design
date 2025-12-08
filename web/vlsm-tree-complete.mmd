@@ -1,0 +1,122 @@
+graph TD
+    Start["<b>Supernet: 114.192.0.0/14</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>Range: 114.192.0.0 - 114.195.255.255<br/>Total: 262,144 addresses<br/>Usable: 262,142<br/>━━━━━━━━━━━━━━━━━━━━<br/>Allocation Strategy: Largest to Smallest"]
+    
+    Start --> Split1["<b>First Split: /15</b><br/>Divide into 2 equal blocks"]
+    
+    Split1 --> F["<b>Network F: 114.192.0.0/15</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>Required: 83,492 hosts<br/>H = 17, Prefix = /15<br/>Mask: 255.254.0.0<br/>Total: 131,072 addresses<br/>Usable: 131,070 addresses<br/>━━━━━━━━━━━━━━━━━━━━<br/>First: 114.192.0.1<br/>Last: 114.193.255.254<br/>Broadcast: 114.193.255.255<br/>━━━━━━━━━━━━━━━━━━━━<br/>Waste: 47,578 (36.3%)<br/>✓ ALLOCATED"]
+    
+    Split1 --> Block2["<b>Remaining: 114.194.0.0/15</b><br/>131,072 addresses available"]
+    
+    Block2 --> Split2["<b>Second Split: /16</b><br/>Divide into 2 /16 blocks"]
+    
+    Split2 --> Block3["<b>Block: 114.194.0.0/16</b><br/>65,536 addresses"]
+    Split2 --> Block4["<b>Block: 114.195.0.0/16</b><br/>65,536 addresses"]
+    
+    Block3 --> Split3["<b>Split: /17</b><br/>Divide into 2 /17 blocks"]
+    
+    Split3 --> Block5["<b>Block: 114.194.0.0/17</b><br/>32,768 addresses"]
+    Split3 --> Block6["<b>Block: 114.194.128.0/17</b><br/>32,768 addresses"]
+    
+    Block5 --> Split4["<b>Split: /18</b><br/>Divide into 4 /18 blocks"]
+    
+    Split4 --> B["<b>Network B: 114.194.0.0/18</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>Required: 14,068 hosts<br/>H = 14, Prefix = /18<br/>Mask: 255.255.192.0<br/>Total: 16,384<br/>Usable: 16,382<br/>━━━━━━━━━━━━━━━━━━━━<br/>First: 114.194.0.1<br/>Last: 114.194.63.254<br/>Broadcast: 114.194.63.255<br/>━━━━━━━━━━━━━━━━━━━━<br/>Waste: 2,314 (14.1%)<br/>✓ ALLOCATED"]
+    
+    Split4 --> C["<b>Network C: 114.194.64.0/18</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>Required: 11,243 hosts<br/>H = 14, Prefix = /18<br/>Mask: 255.255.192.0<br/>Total: 16,384<br/>Usable: 16,382<br/>━━━━━━━━━━━━━━━━━━━━<br/>First: 114.194.64.1<br/>Last: 114.194.127.254<br/>Broadcast: 114.194.127.255<br/>━━━━━━━━━━━━━━━━━━━━<br/>Waste: 5,139 (31.4%)<br/>✓ ALLOCATED"]
+    
+    Block6 --> Split5["<b>Split: /18</b><br/>Divide into 2 /18 blocks"]
+    
+    Split5 --> A["<b>Network A: 114.194.128.0/18</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>Required: 10,921 hosts<br/>H = 14, Prefix = /18<br/>Mask: 255.255.192.0<br/>Total: 16,384<br/>Usable: 16,382<br/>━━━━━━━━━━━━━━━━━━━━<br/>First: 114.194.128.1<br/>Last: 114.194.191.254<br/>Broadcast: 114.194.191.255<br/>━━━━━━━━━━━━━━━━━━━━<br/>Waste: 5,461 (33.3%)<br/>✓ ALLOCATED"]
+    
+    Split5 --> L["<b>Network L: 114.194.192.0/18</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>Required: 8,644 hosts<br/>H = 14, Prefix = /18<br/>Mask: 255.255.192.0<br/>Total: 16,384<br/>Usable: 16,382<br/>━━━━━━━━━━━━━━━━━━━━<br/>First: 114.194.192.1<br/>Last: 114.194.255.254<br/>Broadcast: 114.194.255.255<br/>━━━━━━━━━━━━━━━━━━━━<br/>Waste: 7,738 (47.2%)<br/>✓ ALLOCATED"]
+    
+    Block4 --> Split6["<b>Split: /18</b><br/>Divide into 4 /18 blocks"]
+    
+    Split6 --> Block7["<b>Block: 114.195.0.0/18</b><br/>16,384 addresses"]
+    Split6 --> Block8["<b>Block: 114.195.64.0/18</b><br/>16,384 addresses"]
+    Split6 --> Block9["<b>Block: 114.195.128.0/18</b><br/>16,384 addresses"]
+    Split6 --> Block10["<b>Block: 114.195.192.0/18</b><br/>16,384 addresses"]
+    
+    Block7 --> Split7["<b>Split: /19</b><br/>Divide into 2 /19 blocks"]
+    
+    Split7 --> E["<b>Network E: 114.195.0.0/19</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>Required: 7,579 hosts<br/>H = 13, Prefix = /19<br/>Mask: 255.255.224.0<br/>Total: 8,192<br/>Usable: 8,190<br/>━━━━━━━━━━━━━━━━━━━━<br/>First: 114.195.0.1<br/>Last: 114.195.31.254<br/>Broadcast: 114.195.31.255<br/>━━━━━━━━━━━━━━━━━━━━<br/>Waste: 611 (7.5%)<br/>✓ ALLOCATED"]
+    
+    Split7 --> M["<b>Network M: 114.195.32.0/19</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>Required: 6,021 hosts<br/>H = 13, Prefix = /19<br/>Mask: 255.255.224.0<br/>Total: 8,192<br/>Usable: 8,190<br/>━━━━━━━━━━━━━━━━━━━━<br/>First: 114.195.32.1<br/>Last: 114.195.63.254<br/>Broadcast: 114.195.63.255<br/>━━━━━━━━━━━━━━━━━━━━<br/>Waste: 2,169 (26.5%)<br/>✓ ALLOCATED"]
+    
+    Block8 --> Split8["<b>Split: /20</b><br/>Divide into 4 /20 blocks"]
+    
+    Split8 --> G["<b>Network G: 114.195.64.0/20</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>Required: 3,447 hosts<br/>H = 12, Prefix = /20<br/>Mask: 255.255.240.0<br/>Total: 4,096<br/>Usable: 4,094<br/>━━━━━━━━━━━━━━━━━━━━<br/>First: 114.195.64.1<br/>Last: 114.195.79.254<br/>Broadcast: 114.195.79.255<br/>━━━━━━━━━━━━━━━━━━━━<br/>Waste: 647 (15.8%)<br/>✓ ALLOCATED"]
+    
+    Split8 --> D["<b>Network D: 114.195.80.0/20</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>Required: 2,154 hosts<br/>H = 12, Prefix = /20<br/>Mask: 255.255.240.0<br/>Total: 4,096<br/>Usable: 4,094<br/>━━━━━━━━━━━━━━━━━━━━<br/>First: 114.195.80.1<br/>Last: 114.195.95.254<br/>Broadcast: 114.195.95.255<br/>━━━━━━━━━━━━━━━━━━━━<br/>Waste: 1,940 (47.4%)<br/>✓ ALLOCATED"]
+    
+    Split8 --> Block11["<b>Block: 114.195.96.0/20</b><br/>4,096 addresses"]
+    Split8 --> Block12["<b>Block: 114.195.112.0/20</b><br/>4,096 addresses"]
+    
+    Block11 --> Split9["<b>Split: /22</b><br/>Divide into 4 /22 blocks"]
+    
+    Split9 --> J["<b>Network J: 114.195.96.0/22</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>Required: 874 hosts<br/>H = 10, Prefix = /22<br/>Mask: 255.255.252.0<br/>Total: 1,024<br/>Usable: 1,022<br/>━━━━━━━━━━━━━━━━━━━━<br/>First: 114.195.96.1<br/>Last: 114.195.99.254<br/>Broadcast: 114.195.99.255<br/>━━━━━━━━━━━━━━━━━━━━<br/>Waste: 148 (14.5%)<br/>✓ ALLOCATED"]
+    
+    Split9 --> H["<b>Network H: 114.195.100.0/22</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>Required: 851 hosts<br/>H = 10, Prefix = /22<br/>Mask: 255.255.252.0<br/>Total: 1,024<br/>Usable: 1,022<br/>━━━━━━━━━━━━━━━━━━━━<br/>First: 114.195.100.1<br/>Last: 114.195.103.254<br/>Broadcast: 114.195.103.255<br/>━━━━━━━━━━━━━━━━━━━━<br/>Waste: 171 (16.7%)<br/>✓ ALLOCATED"]
+    
+    Split9 --> N["<b>Network N: 114.195.104.0/22</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>Required: 849 hosts<br/>H = 10, Prefix = /22<br/>Mask: 255.255.252.0<br/>Total: 1,024<br/>Usable: 1,022<br/>━━━━━━━━━━━━━━━━━━━━<br/>First: 114.195.104.1<br/>Last: 114.195.107.254<br/>Broadcast: 114.195.107.255<br/>━━━━━━━━━━━━━━━━━━━━<br/>Waste: 173 (16.9%)<br/>✓ ALLOCATED"]
+    
+    Split9 --> I["<b>Network I: 114.195.108.0/22</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>Required: 835 hosts<br/>H = 10, Prefix = /22<br/>Mask: 255.255.252.0<br/>Total: 1,024<br/>Usable: 1,022<br/>━━━━━━━━━━━━━━━━━━━━<br/>First: 114.195.108.1<br/>Last: 114.195.111.254<br/>Broadcast: 114.195.111.255<br/>━━━━━━━━━━━━━━━━━━━━<br/>Waste: 187 (18.3%)<br/>✓ ALLOCATED"]
+    
+    Block12 --> Split10["<b>Additional Networks</b><br/>P2P Links & LAN Segments"]
+    
+    Split10 --> P2PBlock["<b>Point-to-Point Links</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>29 Links × /30 = 116 addresses<br/>Range: 114.195.112.0 - 114.195.112.115<br/>━━━━━━━━━━━━━━━━━━━━<br/>Each Link: 2 usable hosts<br/>Total: 58 usable addresses<br/>Efficiency: 50%"]
+    
+    Split10 --> LANBlock["<b>LAN Segments</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>15 LANs × /29 = 120 addresses<br/>Range: 114.195.112.120 - 114.195.112.239<br/>━━━━━━━━━━━━━━━━━━━━<br/>Each LAN: 6 usable hosts<br/>Total: 90 usable addresses<br/>Efficiency: 75%"]
+    
+    Block9 --> Future1["<b>Future Expansion</b><br/>114.195.128.0 - 114.195.191.255<br/>16,384 addresses available"]
+    
+    Block10 --> Future2["<b>Future Expansion</b><br/>114.195.192.0 - 114.195.255.255<br/>16,384 addresses available"]
+    
+    Block12 --> Future3["<b>Future Expansion</b><br/>114.195.112.240 - 114.195.112.255<br/>16 addresses available"]
+    
+    P2PBlock --> P2PDetails["<b>P2P Link Details</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>Link-01: 114.195.112.0/30<br/>Link-02: 114.195.112.4/30<br/>Link-03: 114.195.112.8/30<br/>... (29 total links)<br/>Link-29: 114.195.112.112/30"]
+    
+    LANBlock --> LANDetails["<b>LAN Segment Details</b><br/>━━━━━━━━━━━━━━━━━━━━<br/>LAN-01: 114.195.112.120/29<br/>LAN-02: 114.195.112.128/29<br/>LAN-03: 114.195.112.136/29<br/>... (15 total LANs)<br/>LAN-15: 114.195.112.232/29"]
+    
+    style Start fill:#1a237e,stroke:#000051,stroke-width:4px,color:#fff
+    style F fill:#00695c,stroke:#003d33,stroke-width:3px,color:#fff
+    style B fill:#00695c,stroke:#003d33,stroke-width:3px,color:#fff
+    style C fill:#00695c,stroke:#003d33,stroke-width:3px,color:#fff
+    style A fill:#00695c,stroke:#003d33,stroke-width:3px,color:#fff
+    style L fill:#00695c,stroke:#003d33,stroke-width:3px,color:#fff
+    style E fill:#00695c,stroke:#003d33,stroke-width:3px,color:#fff
+    style M fill:#00695c,stroke:#003d33,stroke-width:3px,color:#fff
+    style G fill:#00695c,stroke:#003d33,stroke-width:3px,color:#fff
+    style D fill:#00695c,stroke:#003d33,stroke-width:3px,color:#fff
+    style J fill:#00695c,stroke:#003d33,stroke-width:3px,color:#fff
+    style H fill:#00695c,stroke:#003d33,stroke-width:3px,color:#fff
+    style N fill:#00695c,stroke:#003d33,stroke-width:3px,color:#fff
+    style I fill:#00695c,stroke:#003d33,stroke-width:3px,color:#fff
+    style P2PBlock fill:#1565c0,stroke:#0d47a1,stroke-width:3px,color:#fff
+    style LANBlock fill:#2e7d32,stroke:#1b5e20,stroke-width:3px,color:#fff
+    style Future1 fill:#f57c00,stroke:#bf360c,stroke-width:2px,color:#fff
+    style Future2 fill:#f57c00,stroke:#bf360c,stroke-width:2px,color:#fff
+    style Future3 fill:#f57c00,stroke:#bf360c,stroke-width:2px,color:#fff
+    style Block2 fill:#4a148c,stroke:#12005e,stroke-width:2px,color:#fff
+    style Block3 fill:#4a148c,stroke:#12005e,stroke-width:2px,color:#fff
+    style Block4 fill:#4a148c,stroke:#12005e,stroke-width:2px,color:#fff
+    style Block5 fill:#4a148c,stroke:#12005e,stroke-width:2px,color:#fff
+    style Block6 fill:#4a148c,stroke:#12005e,stroke-width:2px,color:#fff
+    style Block7 fill:#4a148c,stroke:#12005e,stroke-width:2px,color:#fff
+    style Block8 fill:#4a148c,stroke:#12005e,stroke-width:2px,color:#fff
+    style Block9 fill:#4a148c,stroke:#12005e,stroke-width:2px,color:#fff
+    style Block10 fill:#4a148c,stroke:#12005e,stroke-width:2px,color:#fff
+    style Block11 fill:#4a148c,stroke:#12005e,stroke-width:2px,color:#fff
+    style Block12 fill:#4a148c,stroke:#12005e,stroke-width:2px,color:#fff
+    style Split1 fill:#b71c1c,stroke:#7f0000,stroke-width:2px,color:#fff
+    style Split2 fill:#b71c1c,stroke:#7f0000,stroke-width:2px,color:#fff
+    style Split3 fill:#b71c1c,stroke:#7f0000,stroke-width:2px,color:#fff
+    style Split4 fill:#b71c1c,stroke:#7f0000,stroke-width:2px,color:#fff
+    style Split5 fill:#b71c1c,stroke:#7f0000,stroke-width:2px,color:#fff
+    style Split6 fill:#b71c1c,stroke:#7f0000,stroke-width:2px,color:#fff
+    style Split7 fill:#b71c1c,stroke:#7f0000,stroke-width:2px,color:#fff
+    style Split8 fill:#b71c1c,stroke:#7f0000,stroke-width:2px,color:#fff
+    style Split9 fill:#b71c1c,stroke:#7f0000,stroke-width:2px,color:#fff
+    style Split10 fill:#b71c1c,stroke:#7f0000,stroke-width:2px,color:#fff
+    style P2PDetails fill:#64b5f6,stroke:#1976d2,stroke-width:2px,color:#000
+    style LANDetails fill:#81c784,stroke:#388e3c,stroke-width:2px,color:#000
+

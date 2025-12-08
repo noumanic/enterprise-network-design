@@ -1,0 +1,627 @@
+FAST National University of Computing and Emerging
+Sciences
+Islamabad Campus
+Computer Networks
+Course Semester Project
+VLSM Subnetting Configuration
+Name:Muhammad Nouman Hafeez
+Roll Number:21I-0416
+Submitted to:Sir Hamza Mehmood
+Date of Submission:7th December, 2025VLSM Subnetting Configuration
+Network Information
+•Public IP Address:114.192.168.19/24
+•Private IP Address:192.168.1.6
+Host Requirements per Subnet
+Network Required Hosts
+A 10,921
+B 14,068
+C 11,243
+D 2,154
+E 7,579
+F 83,492
+G 3,447
+H 851
+I 835
+J 874
+L 8,644
+M 6,021
+N 849
+Table 1: Original Host Requirements
+Sorted Host Requirements (Max→Min)
+Network Required Hosts
+F 83,492
+B 14,068
+C 11,243
+A 10,921
+L 8,644
+E 7,579
+M 6,021
+G 3,447
+D 2,154
+J 874
+H 851
+N 849
+I 835
+Table 2: Sorted Host Requirements
+Allocation Policy
+•Supernet:114.192.0.0/14 (covers 114.192.0.0→114.195.255.255)
+•Allocation Order:Largest to smallest (minimizes fragmentation)
+•Algorithm:For each required hostsR, choose the smallestHwhere 2H−2≥R, then prefix =
+32−H
+1Detailed Calculations for Each Network
+Network F (Largest)
+Required:83,492 hosts
+Choosing H:
+•Test 216−2 = 65,534 (too small)
+•Test 217−2 = 131,070 (OK)→H = 17
+Calculations:
+Prefix = 32−17 = /15
+Mask = 255.254.0.0
+Total addresses = 217= 131,072
+Usable addresses = 217−2 = 131,070
+Waste = 131,070−83,492 = 47,578
+Assigned Network:114.192.0.0/15
+Last Usable Calculation:
+Last usable offset = 217−2 = 131,070
+Decompose: 131,070 = 511×256 + 254 (N= 511,M= 254)
+Network octets:A= 114,B= 192,C= 0,D= 0
+C+N= 0 + 511 = 511
+511 = 1×256 + 255 (carry 1 to B, set C=255)
+B= 192 + 1 = 193, C= 255
+D+M= 0 + 254 = 254 (no carry)
+Results:
+•First usable: 114.192.0.1
+•Last usable: 114.193.255.254
+•Broadcast: 114.193.255.255
+•Next start: 114.194.0.0
+Network B
+Required:14,068 hosts
+Choosing H:214−2 = 16,382≥14,068→H = 14
+Calculations:
+Prefix = 32−14 = /18
+Mask = 255.255.192.0
+Total addresses = 214= 16,384
+Usable addresses = 214−2 = 16,382
+Waste = 16,382−14,068 = 2,314
+Assigned Network:114.194.0.0/18
+2Last Usable Calculation:
+Last usable offset = 214−2 = 16,382
+Decompose: 16,382 = 63×256 + 254 (N= 63,M= 254)
+Network = 114.194.0.0 (C= 0,D= 0)
+C+N= 0 + 63 = 63 (no carry)
+D+M= 0 + 254 = 254
+Results:
+•First usable: 114.194.0.1
+•Last usable: 114.194.63.254
+•Broadcast: 114.194.63.255
+•Next start: 114.194.64.0
+Network C
+Required:11,243 hosts
+Choosing H:214−2 = 16,382≥11,243→H = 14
+Calculations:
+Prefix = 32−14 = /18
+Mask = 255.255.192.0
+Total addresses = 214= 16,384
+Usable addresses = 16,382
+Waste = 16,382−11,243 = 5,139
+Assigned Network:114.194.64.0/18
+Last Usable Calculation:
+Offset = 16,382 = 63×256 + 254 (N= 63,M= 254)
+Network = 114.194.64.0
+C+ 63 = 64 + 63 = 127, D+ 254 = 254
+Results:
+•First usable: 114.194.64.1
+•Last usable: 114.194.127.254
+•Broadcast: 114.194.127.255
+•Next start: 114.194.128.0
+Network A
+Required:10,921 hosts
+Choosing H:214−2 = 16,382≥10,921→H = 14
+Calculations:
+Prefix = /18
+Usable = 16,382
+Waste = 16,382−10,921 = 5,461
+3Assigned Network:114.194.128.0/18
+Last Usable Calculation:
+Offset = 16,382 = 63×256 + 254
+C+ 63 = 128 + 63 = 191, D+ 254 = 254
+Results:
+•First usable: 114.194.128.1
+•Last usable: 114.194.191.254
+•Broadcast: 114.194.191.255
+•Next start: 114.194.192.0
+Network L
+Required:8,644 hosts
+Choosing H:214−2 = 16,382≥8,644→H = 14
+Calculations:
+Prefix = /18
+Usable = 16,382
+Waste = 16,382−8,644 = 7,738
+Assigned Network:114.194.192.0/18
+Last Usable Calculation:
+Offset = 16,382 = 63×256 + 254
+C+ 63 = 192 + 63 = 255, D+ 254 = 254
+Results:
+•First usable: 114.194.192.1
+•Last usable: 114.194.255.254
+•Broadcast: 114.194.255.255
+•Next start: 114.195.0.0
+Network E
+Required:7,579 hosts
+Choosing H:213−2 = 8,190≥7,579→H = 13
+Calculations:
+Prefix = 32−13 = /19
+Mask = 255.255.224.0
+Total addresses = 213= 8,192
+Usable addresses = 8,190
+Waste = 8,190−7,579 = 611
+Assigned Network:114.195.0.0/19
+Last Usable Calculation:
+Offset = 213−2 = 8,190 = 31×256 + 254 (N= 31,M= 254)
+Network = 114.195.0.0
+C+ 31 = 0 + 31 = 31, D+ 254 = 254
+Results:
+4•First usable: 114.195.0.1
+•Last usable: 114.195.31.254
+•Broadcast: 114.195.31.255
+•Next start: 114.195.32.0
+Network M
+Required:6,021 hosts
+Choosing H:213−2 = 8,190≥6,021→H = 13
+Calculations:
+Prefix = /19
+Usable = 8,190
+Waste = 8,190−6,021 = 2,169
+Assigned Network:114.195.32.0/19
+Last Usable Calculation:
+Offset = 8,190 = 31×256 + 254
+C+ 31 = 32 + 31 = 63, D+ 254 = 254
+Results:
+•First usable: 114.195.32.1
+•Last usable: 114.195.63.254
+•Broadcast: 114.195.63.255
+•Next start: 114.195.64.0
+Network G
+Required:3,447 hosts
+Choosing H:212−2 = 4,094≥3,447→H = 12
+Calculations:
+Prefix = 32−12 = /20
+Mask = 255.255.240.0
+Total addresses = 212= 4,096
+Usable addresses = 4,094
+Waste = 4,094−3,447 = 647
+Assigned Network:114.195.64.0/20
+Last Usable Calculation:
+Offset = 212−2 = 4,094 = 15×256 + 254 (N= 15,M= 254)
+Network = 114.195.64.0
+C+ 15 = 64 + 15 = 79, D+ 254 = 254
+Results:
+•First usable: 114.195.64.1
+•Last usable: 114.195.79.254
+•Broadcast: 114.195.79.255
+•Next start: 114.195.80.0
+5Network D
+Required:2,154 hosts
+Choosing H:212−2 = 4,094≥2,154→H = 12
+Calculations:
+Prefix = /20
+Usable = 4,094
+Waste = 4,094−2,154 = 1,940
+Assigned Network:114.195.80.0/20
+Last Usable Calculation:
+Offset = 4,094 = 15×256 + 254
+C+ 15 = 80 + 15 = 95, D+ 254 = 254
+Results:
+•First usable: 114.195.80.1
+•Last usable: 114.195.95.254
+•Broadcast: 114.195.95.255
+•Next start: 114.195.96.0
+Network J
+Required:874 hosts
+Choosing H:210−2 = 1,022≥874→H = 10
+Calculations:
+Prefix = 32−10 = /22
+Mask = 255.255.252.0
+Total addresses = 210= 1,024
+Usable addresses = 1,022
+Waste = 1,022−874 = 148
+Assigned Network:114.195.96.0/22
+Last Usable Calculation:
+Offset = 210−2 = 1,022 = 3×256 + 254 (N= 3,M= 254)
+Network = 114.195.96.0
+C+ 3 = 96 + 3 = 99, D+ 254 = 254
+Results:
+•First usable: 114.195.96.1
+•Last usable: 114.195.99.254
+•Broadcast: 114.195.99.255
+•Next start: 114.195.100.0
+6Network H
+Required:851 hosts
+Choosing H:210−2 = 1,022≥851→H = 10
+Calculations:
+Prefix = /22
+Usable = 1,022
+Waste = 1,022−851 = 171
+Assigned Network:114.195.100.0/22
+Last Usable Calculation:
+Offset = 1,022 = 3×256 + 254
+C+ 3 = 100 + 3 = 103, D+ 254 = 254
+Results:
+•First usable: 114.195.100.1
+•Last usable: 114.195.103.254
+•Broadcast: 114.195.103.255
+•Next start: 114.195.104.0
+Network N
+Required:849 hosts
+Choosing H:210−2 = 1,022≥849→H = 10
+Calculations:
+Prefix = /22
+Usable = 1,022
+Waste = 1,022−849 = 173
+Assigned Network:114.195.104.0/22
+Last Usable Calculation:
+Offset = 1,022 = 3×256 + 254
+C+ 3 = 104 + 3 = 107, D+ 254 = 254
+Results:
+•First usable: 114.195.104.1
+•Last usable: 114.195.107.254
+•Broadcast: 114.195.107.255
+•Next start: 114.195.108.0
+7Network I (Smallest)
+Required:835 hosts
+Choosing H:210−2 = 1,022≥835→H = 10
+Calculations:
+Prefix = /22
+Usable = 1,022
+Waste = 1,022−835 = 187
+Assigned Network:114.195.108.0/22
+Last Usable Calculation:
+Offset = 1,022 = 3×256 + 254
+C+ 3 = 108 + 3 = 111, D+ 254 = 254
+Results:
+•First usable: 114.195.108.1
+•Last usable: 114.195.111.254
+•Broadcast: 114.195.111.255
+•Next start: 114.195.112.0
+8Complete VLSM Allocation Table
+Net Req Prefix Mask Total Usable
+F 83,492 /15 255.254.0.0 131,072 131,070
+B 14,068 /18 255.255.192.0 16,384 16,382
+C 11,243 /18 255.255.192.0 16,384 16,382
+A 10,921 /18 255.255.192.0 16,384 16,382
+L 8,644 /18 255.255.192.0 16,384 16,382
+E 7,579 /19 255.255.224.0 8,192 8,190
+M 6,021 /19 255.255.224.0 8,192 8,190
+G 3,447 /20 255.255.240.0 4,096 4,094
+D 2,154 /20 255.255.240.0 4,096 4,094
+J 874 /22 255.255.252.0 1,024 1,022
+H 851 /22 255.255.252.0 1,024 1,022
+N 849 /22 255.255.252.0 1,024 1,022
+I 835 /22 255.255.252.0 1,024 1,022
+Table 3: VLSM Allocation - Part 1
+Net Subnet First Usable Last Usable Broadcast
+F 114.192.0.0/15 114.192.0.1 114.193.255.254 114.193.255.255
+B 114.194.0.0/18 114.194.0.1 114.194.63.254 114.194.63.255
+C 114.194.64.0/18 114.194.64.1 114.194.127.254 114.194.127.255
+A114.194.128.0/18 114.194.128.1 114.194.191.254 114.194.191.255
+L114.194.192.0/18 114.194.192.1 114.194.255.254 114.194.255.255
+E 114.195.0.0/19 114.195.0.1 114.195.31.254 114.195.31.255
+M 114.195.32.0/19 114.195.32.1 114.195.63.254 114.195.63.255
+G 114.195.64.0/20 114.195.64.1 114.195.79.254 114.195.79.255
+D 114.195.80.0/20 114.195.80.1 114.195.95.254 114.195.95.255
+J114.195.96.0/22 114.195.96.1 114.195.99.254 114.195.99.255
+H114.195.100.0/22 114.195.100.1 114.195.103.254 114.195.103.255
+N114.195.104.0/22 114.195.104.1 114.195.107.254 114.195.107.255
+I114.195.108.0/22 114.195.108.1 114.195.111.254 114.195.111.255
+Table 4: VLSM Allocation - Part 2
+Net Waste Next Start
+F 47,578 114.194.0.0
+B 2,314 114.194.64.0
+C 5,139 114.194.128.0
+A 5,461 114.194.192.0
+L 7,738 114.195.0.0
+E 611 114.195.32.0
+M 2,169 114.195.64.0
+G 647 114.195.80.0
+D 1,940 114.195.96.0
+J 148 114.195.100.0
+H 171 114.195.104.0
+N 173 114.195.108.0
+I 187 114.195.112.0
+Table 5: VLSM Allocation - Part 3
+9Summary Statistics
+Metric Value
+Total Required Hosts 150,978
+Total Allocated Addresses 199,680
+Total Usable Addresses 199,652
+Total Waste 48,674 addresses (24.4%)
+Supernet Used 114.192.0.0 to 114.195.111.255
+Supernet Range 114.192.0.0/14
+Remaining Space 114.195.112.0 to 114.195.255.255
+Table 6: VLSM Summary Statistics
+10Conclusion
+This VLSM subnetting configuration demonstrates efficient IP address allocation using Variable Length
+Subnet Masking. The design successfully accommodates all 13 networks (A through N) with their
+varying host requirements ranging from 835 to 83,492 hosts.
+Key Achievements:
+•Successfully allocated all required subnets within the 114.192.0.0/14 supernet
+•Minimized address wastage through proper VLSM implementation
+•Maintained contiguous address allocation for easier routing
+•Reserved future expansion space (114.195.112.0 to 114.195.255.255)
+Efficiency Analysis:
+•Address Utilization:75.6% of allocated addresses are usable
+•Waste Percentage:24.4% waste is acceptable for VLSM given the diverse host requirements
+•Scalability:Sufficient remaining address space for future network expansion
+Implementation Notes:
+1. The largest network (F) requires a /15 prefix to accommodate 83,492 hosts
+2. Four networks (B, C, A, L) use /18 prefixes for host counts between 8,644 and 14,068
+3. Two networks (E, M) use /19 prefixes for moderate-sized networks
+4. Two networks (G, D) use /20 prefixes for smaller networks
+5. Four networks (J, H, N, I) use /22 prefixes for the smallest host requirements
+Routing Considerations:
+The contiguous allocation scheme allows for potential route summarization at the routing protocol level,
+which can reduce routing table size and improve network performance. Networks can be summarized
+as follows:
+•Network F: 114.192.0.0/15 (standalone large network)
+•Networks B, C, A, L: Can be summarized under 114.194.0.0/16
+•Networks E, M, G, D, J, H, N, I: Can be summarized under 114.195.0.0/16
+1 Additional Network Allocations
+1.1 Overview
+Beyond the thirteen primary networks (A through N) previously allocated, the network topology re-
+quires additional subnetting to accommodate inter-router communication links and unlabeled LAN
+segments. This section documents the allocation of 44 additional networks from the remaining unallo-
+cated address space.
+111.2 Available Address Space
+After the allocation of networks A through N, the following address space remains available:
+•Available Range:114.195.112.0 to 114.195.255.255
+•Calculation:Third octet range: 112 to 255 = 144 values
+•Total Addresses:144×256 = 36,864 addresses
+1.3 Network Requirements Analysis
+The additional networks consist of two distinct categories:
+1.Point-to-Point Router Links:29 networks
+•Purpose: Inter-router communication
+•Host requirement: 2 usable addresses per link
+•Recommended prefix: /30
+2.Unlabeled LAN Segments:15 networks
+•Purpose: Small departmental or access networks
+•Host requirement: Less than 8 hosts per network
+•Recommended prefix: /29
+Total Additional Networks:44
+1.4 Allocation Methodology
+1.4.1 Point-to-Point Links (/30 Subnets)
+For router-to-router connections, the /30 subnet mask is optimal:
+Prefix =/30
+Subnet Mask = 255.255.255.252
+Host Bits =H= 2
+Total Addresses = 2H= 22= 4
+Usable Addresses = 2H−2 = 4−2 = 2
+Networks Required = 29
+Total Space Needed = 29×4 = 116 addresses
+1.4.2 Small LAN Segments (/29 Subnets)
+For networks requiring fewer than 8 hosts, the /29 subnet mask provides adequate capacity:
+Prefix =/29
+Subnet Mask = 255.255.255.248
+Host Bits =H= 3
+Total Addresses = 2H= 23= 8
+Usable Addresses = 2H−2 = 8−2 = 6
+Networks Required = 15
+Total Space Needed = 15×8 = 120 addresses
+1.5 Point-to-Point Link Allocations
+12Table 7: Point-to-Point Router Links (Part 1)
+Network Subnet Mask First Usable Last Usable
+Link-01 114.195.112.0/30 255.255.255.252 114.195.112.1 114.195.112.2
+Link-02 114.195.112.4/30 255.255.255.252 114.195.112.5 114.195.112.6
+Link-03 114.195.112.8/30 255.255.255.252 114.195.112.9 114.195.112.10
+Link-04 114.195.112.12/30 255.255.255.252 114.195.112.13 114.195.112.14
+Link-05 114.195.112.16/30 255.255.255.252 114.195.112.17 114.195.112.18
+Link-06 114.195.112.20/30 255.255.255.252 114.195.112.21 114.195.112.22
+Link-07 114.195.112.24/30 255.255.255.252 114.195.112.25 114.195.112.26
+Link-08 114.195.112.28/30 255.255.255.252 114.195.112.29 114.195.112.30
+Link-09 114.195.112.32/30 255.255.255.252 114.195.112.33 114.195.112.34
+Link-10 114.195.112.36/30 255.255.255.252 114.195.112.37 114.195.112.38
+Table 8: Point-to-Point Router Links (Part 2)
+Network Subnet Mask First Usable Last Usable
+Link-11 114.195.112.40/30 255.255.255.252 114.195.112.41 114.195.112.42
+Link-12 114.195.112.44/30 255.255.255.252 114.195.112.45 114.195.112.46
+Link-13 114.195.112.48/30 255.255.255.252 114.195.112.49 114.195.112.50
+Link-14 114.195.112.52/30 255.255.255.252 114.195.112.53 114.195.112.54
+Link-15 114.195.112.56/30 255.255.255.252 114.195.112.57 114.195.112.58
+Link-16 114.195.112.60/30 255.255.255.252 114.195.112.61 114.195.112.62
+Link-17 114.195.112.64/30 255.255.255.252 114.195.112.65 114.195.112.66
+Link-18 114.195.112.68/30 255.255.255.252 114.195.112.69 114.195.112.70
+Link-19 114.195.112.72/30 255.255.255.252 114.195.112.73 114.195.112.74
+Link-20 114.195.112.76/30 255.255.255.252 114.195.112.77 114.195.112.78
+Table 9: Point-to-Point Router Links (Part 3)
+Network Subnet Mask First Usable Last Usable
+Link-21 114.195.112.80/30 255.255.255.252 114.195.112.81 114.195.112.82
+Link-22 114.195.112.84/30 255.255.255.252 114.195.112.85 114.195.112.86
+Link-23 114.195.112.88/30 255.255.255.252 114.195.112.89 114.195.112.90
+Link-24 114.195.112.92/30 255.255.255.252 114.195.112.93 114.195.112.94
+Link-25 114.195.112.96/30 255.255.255.252 114.195.112.97 114.195.112.98
+Link-26 114.195.112.100/30 255.255.255.252 114.195.112.101 114.195.112.102
+Link-27 114.195.112.104/30 255.255.255.252 114.195.112.105 114.195.112.106
+Link-28 114.195.112.108/30 255.255.255.252 114.195.112.109 114.195.112.110
+Link-29 114.195.112.112/30 255.255.255.252 114.195.112.113 114.195.112.114
+13Table 10: Point-to-Point Router Links - Broadcast Addresses
+Network Broadcast Router 1 IP Router 2 IP Total Hosts
+Link-01 114.195.112.3 114.195.112.1 114.195.112.2 2
+Link-02 114.195.112.7 114.195.112.5 114.195.112.6 2
+Link-03 114.195.112.11 114.195.112.9 114.195.112.10 2
+Link-04 114.195.112.15 114.195.112.13 114.195.112.14 2
+Link-05 114.195.112.19 114.195.112.17 114.195.112.18 2
+Link-06 114.195.112.23 114.195.112.21 114.195.112.22 2
+Link-07 114.195.112.27 114.195.112.25 114.195.112.26 2
+Link-08 114.195.112.31 114.195.112.29 114.195.112.30 2
+Link-09 114.195.112.35 114.195.112.33 114.195.112.34 2
+Link-10 114.195.112.39 114.195.112.37 114.195.112.38 2
+Link-11 114.195.112.43 114.195.112.41 114.195.112.42 2
+Link-12 114.195.112.47 114.195.112.45 114.195.112.46 2
+Link-13 114.195.112.51 114.195.112.49 114.195.112.50 2
+Link-14 114.195.112.55 114.195.112.53 114.195.112.54 2
+Link-15 114.195.112.59 114.195.112.57 114.195.112.58 2
+Link-16 114.195.112.63 114.195.112.61 114.195.112.62 2
+Link-17 114.195.112.67 114.195.112.65 114.195.112.66 2
+Link-18 114.195.112.71 114.195.112.69 114.195.112.70 2
+Link-19 114.195.112.75 114.195.112.73 114.195.112.74 2
+Link-20 114.195.112.79 114.195.112.77 114.195.112.78 2
+Link-21 114.195.112.83 114.195.112.81 114.195.112.82 2
+Link-22 114.195.112.87 114.195.112.85 114.195.112.86 2
+Link-23 114.195.112.91 114.195.112.89 114.195.112.90 2
+Link-24 114.195.112.95 114.195.112.93 114.195.112.94 2
+Link-25 114.195.112.99 114.195.112.97 114.195.112.98 2
+Link-26 114.195.112.103 114.195.112.101 114.195.112.102 2
+Link-27 114.195.112.107 114.195.112.105 114.195.112.106 2
+Link-28 114.195.112.111 114.195.112.109 114.195.112.110 2
+Link-29 114.195.112.115 114.195.112.113 114.195.112.114 2
+141.6 Unlabeled LAN Segment Allocations
+Table 11: Unlabeled Small LAN Networks (Part 1)
+Network Subnet Mask Total Usable
+LAN-01 114.195.112.120/29 255.255.255.248 8 6
+LAN-02 114.195.112.128/29 255.255.255.248 8 6
+LAN-03 114.195.112.136/29 255.255.255.248 8 6
+LAN-04 114.195.112.144/29 255.255.255.248 8 6
+LAN-05 114.195.112.152/29 255.255.255.248 8 6
+LAN-06 114.195.112.160/29 255.255.255.248 8 6
+LAN-07 114.195.112.168/29 255.255.255.248 8 6
+LAN-08 114.195.112.176/29 255.255.255.248 8 6
+LAN-09 114.195.112.184/29 255.255.255.248 8 6
+LAN-10 114.195.112.192/29 255.255.255.248 8 6
+LAN-11 114.195.112.200/29 255.255.255.248 8 6
+LAN-12 114.195.112.208/29 255.255.255.248 8 6
+LAN-13 114.195.112.216/29 255.255.255.248 8 6
+LAN-14 114.195.112.224/29 255.255.255.248 8 6
+LAN-15 114.195.112.232/29 255.255.255.248 8 6
+Table 12: Unlabeled Small LAN Networks (Part 2)
+Network First Usable Last Usable Broadcast
+LAN-01 114.195.112.121 114.195.112.126 114.195.112.127
+LAN-02 114.195.112.129 114.195.112.134 114.195.112.135
+LAN-03 114.195.112.137 114.195.112.142 114.195.112.143
+LAN-04 114.195.112.145 114.195.112.150 114.195.112.151
+LAN-05 114.195.112.153 114.195.112.158 114.195.112.159
+LAN-06 114.195.112.161 114.195.112.166 114.195.112.167
+LAN-07 114.195.112.169 114.195.112.174 114.195.112.175
+LAN-08 114.195.112.177 114.195.112.182 114.195.112.183
+LAN-09 114.195.112.185 114.195.112.190 114.195.112.191
+LAN-10 114.195.112.193 114.195.112.198 114.195.112.199
+LAN-11 114.195.112.201 114.195.112.206 114.195.112.207
+LAN-12 114.195.112.209 114.195.112.214 114.195.112.215
+LAN-13 114.195.112.217 114.195.112.222 114.195.112.223
+LAN-14 114.195.112.225 114.195.112.230 114.195.112.231
+LAN-15 114.195.112.233 114.195.112.238 114.195.112.239
+151.7 Sample Calculation Examples
+1.7.1 Point-to-Point Link Calculation (Link-01)
+Given Requirements:
+•Required Hosts: 2 (one interface per router)
+•Starting Address: 114.195.112.0
+Choosing H:
+2H−2≥2
+22−2 = 2 (OK)→H= 2
+Calculations:
+Prefix = 32−H= 32−2 =/30
+Subnet Mask = 255.255.255.252
+Total Addresses = 22= 4
+Usable Addresses = 22−2 = 2
+Address Assignment:
+•Network Address: 114.195.112.0
+•First Usable (Router 1): 114.195.112.1
+•Last Usable (Router 2): 114.195.112.2
+•Broadcast Address: 114.195.112.3
+•Next Network Start: 114.195.112.4
+1.7.2 LAN Network Calculation (LAN-01)
+Given Requirements:
+•Required Hosts: Less than 8
+•Starting Address: 114.195.112.120
+Choosing H:
+2H−2≥6
+23−2 = 6 (OK)→H= 3
+Calculations:
+Prefix = 32−H= 32−3 =/29
+Subnet Mask = 255.255.255.248
+Total Addresses = 23= 8
+Usable Addresses = 23−2 = 6
+Last Usable Address Calculation:
+Offset = 23−2 = 6
+Network = 114.195.112.120
+Last Usable = 114.195.112.120 + 6 = 114.195.112.126
+Address Assignment:
+16•Network Address: 114.195.112.120
+•First Usable: 114.195.112.121
+•Last Usable: 114.195.112.126
+•Broadcast Address: 114.195.112.127
+•Next Network Start: 114.195.112.128
+1.8 Allocation Summary
+Table 13: Additional Network Allocation Summary
+Category Networks Addresses Used Range
+P2P Links (/30) 29 116 114.195.112.0 - 114.195.112.115
+Small LANs (/29) 15 120 114.195.112.120 - 114.195.112.239
+Total Used 44 236 114.195.112.0 - 114.195.112.239
+Remaining — 36,628 114.195.112.240 - 114.195.255.255
+1.9 Efficiency Analysis
+1.9.1 Space Utilization
+Available Space = 36,864 addresses
+Allocated Space = 236 addresses
+Utilization Rate =236
+36,864×100% = 0.64%
+Remaining Space = 36,864−236 = 36,628 addresses
+Remaining Percentage =36,628
+36,864×100% = 99.36%
+1.9.2 Address Efficiency per Category
+Point-to-Point Links:
+Required Addresses = 29×2 = 58
+Allocated Addresses = 29×4 = 116
+Waste per Link = 4−2 = 2
+Total Waste = 29×2 = 58
+Efficiency =58
+116×100% = 50%
+Note: 50% efficiency is optimal for point-to-point links as /30 is the smallest practical subnet for
+such connections.
+Small LAN Networks:
+Maximum Required per LAN = 6 hosts
+Allocated per LAN = 6 usable addresses
+Total Allocated Addresses = 15×8 = 120
+Total Usable Addresses = 15×6 = 90
+Waste per LAN = 0 (exact fit)
+Efficiency =90
+120×100% = 75%
+171.10 Future Expansion Capacity
+The remaining unallocated space provides substantial capacity for network growth:
+Table 14: Future Expansion Possibilities
+Subnet Size Networks Possible Hosts per Network
+/30 (P2P Links) 9,157 2
+/29 (Small LANs) 4,578 6
+/28 2,289 14
+/27 1,144 30
+/26 572 62
+/25 286 126
+/24 143 254
+1.11 Implementation Notes
+1.Sequential Allocation:Networks are allocated sequentially to minimize fragmentation and
+simplify routing table management.
+2.Contiguous Addressing:Point-to-point links occupy addresses 114.195.112.0 through 114.195.112.115,
+immediately followed by LAN networks at 114.195.112.120, with minimal gap.
+3.Route Summarization:All additional networks can be summarized under 114.195.112.0/24,
+enabling efficient routing table entries.
+4.Scalability:The allocation leaves 99.36% of available space unallocated, providing extensive
+room for future network expansion.
+5.Standard Compliance:All allocations follow RFC 1918 private addressing guidelines and
+VLSM best practices.
+1.12 Routing Considerations
+1.12.1 Route Summary Possibilities
+The allocated networks allow for hierarchical route summarization:
+•All Additional Networks:Can be summarized as 114.195.112.0/24
+•Point-to-Point Links Only:Can be summarized as 114.195.112.0/25
+•Combined with Primary Networks:All networks (A-N plus additional) can be summarized
+as 114.192.0.0/14
+1.12.2 Routing Protocol Recommendations
+For optimal routing efficiency:
+•Use OSPF or EIGRP for automatic route summarization
+•Configure area boundaries to align with the /24 summarization points
+•Implement route filtering to prevent unnecessary route propagation
+181.13 Conclusion
+The additional network allocation successfully accommodates all 44 required networks (29 point-to-
+point links and 15 small LANs) using only 236 addresses from the available 36,864 address space. This
+represents highly efficient address utilization while maintaining extensive capacity for future growth.
+The contiguous allocation scheme facilitates route summarization and simplifies network management,
+while the standardized subnet sizes (/30 for P2P links, /29 for small LANs) ensure consistency and
+ease of configuration.
+19
